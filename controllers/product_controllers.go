@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (idb *InDB) CreateProduct(c *gin.Context) {
+func CreateProduct(c *gin.Context) {
 	db := database.GetDB()
 	Product := models.Product{}
 
@@ -42,7 +42,7 @@ func (idb *InDB) CreateProduct(c *gin.Context) {
 
 }
 
-func (idb *InDB) UpdateProduct(c *gin.Context) {
+func UpdateProduct(c *gin.Context) {
 	db := database.GetDB()
 	Product := models.Product{}
 
@@ -63,7 +63,7 @@ func (idb *InDB) UpdateProduct(c *gin.Context) {
 
 	Product.ID = uint(productId)
 
-	Product.Updated_At = time.Now()
+	// Product.Updated_At = time.Now()
 	err := db.First(&Product, productId).Updates(&newProduct).Error
 
 	if err != nil {
@@ -83,7 +83,7 @@ func (idb *InDB) UpdateProduct(c *gin.Context) {
 	})
 }
 
-func (idb *InDB) DeleteProduct(c *gin.Context) {
+func DeleteProduct(c *gin.Context) {
 	db := database.GetDB()
 	Product := models.Product{}
 
@@ -103,7 +103,7 @@ func (idb *InDB) DeleteProduct(c *gin.Context) {
 	})
 }
 
-func (idb *InDB) GetProduct(c *gin.Context) {
+func GetProduct(c *gin.Context) {
 	db := database.GetDB()
 	var Product models.Product
 
@@ -124,7 +124,7 @@ func (idb *InDB) GetProduct(c *gin.Context) {
 	})
 }
 
-func (idb *InDB) GetProducts(c *gin.Context) {
+func GetProducts(c *gin.Context) {
 	db := database.GetDB()
 	Product := []models.Product{}
 	var result gin.H

@@ -28,6 +28,7 @@ func StartDB() {
 	}
 
 	db.Debug().AutoMigrate(models.Product{})
+	db.Debug().AutoMigrate(models.User{})
 
 }
 
