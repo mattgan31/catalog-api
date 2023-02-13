@@ -2,6 +2,7 @@ package router
 
 import (
 	"example.com/m/v2/controllers"
+	"example.com/m/v2/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -9,17 +10,19 @@ func StartServer() *gin.Engine {
 
 	router := gin.Default()
 
-	photoRouter := router.Group("/products")
+	productRouter := router.Group("/products")
 	{
-		photoRouter.POST("/", controllers.CreateProduct)
-		photoRouter.PUT("/:productId", controllers.UpdateProduct)
-		photoRouter.DELETE("/:productId", controllers.DeleteProduct)
-		photoRouter.GET("/", controllers.GetProducts)
-		photoRouter.GET("/:productId", controllers.GetProduct)
+		// productRouter.Use(middleware.Authentication())
+		productRouter.POST("/", middleware.Authentication(), controllers.CreateProduct)
+		productRouter.PUT("/:productId", middleware.Authentication(), controllers.UpdateProduct)
+		productRouter.DELETE("/:productId", middleware.Authentication(), controllers.DeleteProduct)
+		productRouter.GET("/", controllers.GetProducts)
+		productRouter.GET("/:productId", controllers.GetProduct)
 	}
 	userRouter := router.Group("/user")
 	{
 		userRouter.POST("/register", controllers.UserRegister)
+		userRouter.POST("/login", controllers.UserLogin)
 
 	}
 
