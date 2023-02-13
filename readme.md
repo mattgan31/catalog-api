@@ -177,8 +177,8 @@ localhost:3000/products/[id]
 
 And if successful then the API will respond
 
-```
+```json
 {
-    "message": "Product Successfully Deleted"
+  "message": "Product Successfully Deleted"
 }
 ```
