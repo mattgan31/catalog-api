@@ -61,9 +61,7 @@ func UpdateProduct(c *gin.Context) {
 		return
 	}
 
-	Product.ID = uint(productId)
-
-	// Product.Updated_At = time.Now()
+	newProduct.Updated_At = time.Now()
 	err := db.First(&Product, productId).Updates(&newProduct).Error
 
 	if err != nil {
